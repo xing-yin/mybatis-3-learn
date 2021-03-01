@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <!--这里使用的是 xml 配置的方式，所以最基本的要有一个config配置文件，此文件后期会被读进内存，存储到 Configuration 对象中。-->
+
+  <!-- 自定义上下文属性 -->
+  <properties>
+    <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+    <property name="url"
+              value="jdbc:mysql://localhost:3306/mybatis_test?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=Asia/Shanghai"/>
+    <property name="username" value="root"/>
+    <property name="password" value="123456"/>
+  </properties>
+
+  <!-- 自定义别名 -->
+  <typeAliases>
+    <typeAlias type="com.alan.mybatis.xmlconfig.entity.UserInfo" alias="userInfo"/>
+  </typeAliases>
+
+  <!--必不可少的是 environments 节点内容以及 mappers 节点内容，分别指定连接的数据源以及对应的 mapper。
+  其它的比如 typeHandler，typeAliases 等不重要，看自己是否需要用。
+  properties 指定属性变量，可以在上下文配置中使用。-->
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="resources/mybatis/mapper/UserMapper.xml"/>
+  </mappers>
+</configuration>

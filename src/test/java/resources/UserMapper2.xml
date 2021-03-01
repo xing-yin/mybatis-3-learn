@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alan.mybatis.xmlconfig.mapper.UserInfoMapper">
+
+  <!---->
+<!--   <cache><cache/> -->
+
+  <select id="getSingleUserInfo" resultType="userInfo">
+    SELECT * FROM user_info WHERE id = #{id}
+  </select>
+
+  <select id="getAllUserInfo" resultType="userInfo">
+    SELECT * FROM user_info
+  </select>
+
+  <select id="getUserInfoByDate" resultType="userInfo">
+    SELECT * FROM user_info WHERE birthday > #{localDate}
+  </select>
+
+  <select id="getUserInfoByLessDate" resultType="userInfo">
+    SELECT
+      *
+    FROM user_info
+    <where>
+      <if test='localDate != null'>
+        birthday <![CDATA[<]]> #{localDate}
+      </if>
+    </where>
+  </select>
+
+</mapper>
