@@ -1,23 +1,35 @@
-MyBatis SQL Mapper Framework for Java
-=====================================
+## Mybatis3
+ 
+> 根据MyBatis 的配置规范配置好后，通过SqlSession.getMapper(XXXMapper.class) 方法，
+MyBatis 会根据相应的接口声明的方法信息，通过动态代理机制生成一个Mapper 实例，
+我们使用Mapper 接口的某一个方法时，MyBatis 会根据这个方法的方法名和参数类型，确定Statement Id，底层还是通过SqlSession.select("statementId",parameterObject);或者SqlSession.update("statementId",parameterObject); 等等来实现对数据库的操作
 
-[![build](https://github.com/mybatis/mybatis-3/workflows/Java%20CI/badge.svg)](https://github.com/mybatis/mybatis-3/actions?query=workflow%3A%22Java+CI%22)
-[![Coverage Status](https://coveralls.io/repos/mybatis/mybatis-3/badge.svg?branch=master&service=github)](https://coveralls.io/github/mybatis/mybatis-3?branch=master)
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/org.mybatis/mybatis/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.mybatis/mybatis)
-[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/https/oss.sonatype.org/org.mybatis/mybatis.svg)](https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/mybatis/)
-[![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-[![Stack Overflow](http://img.shields.io/:stack%20overflow-mybatis-brightgreen.svg)](http://stackoverflow.com/questions/tagged/mybatis)
-[![Project Stats](https://www.openhub.net/p/mybatis/widgets/project_thin_badge.gif)](https://www.openhub.net/p/mybatis)
+- MyBatis 会根据相应的接口声明的方法信息，通过动态代理机制生成一个Mapper 实例,怎么实现动态代理生成实例的？自己用代码实现动态代理
 
-![mybatis](http://mybatis.github.io/images/mybatis-logo.png)
+> MyBatis 通过传入的参数值，使用 Ognl 来动态地构造SQL语句，使得MyBatis 有很强的灵活性和扩展性
 
-The MyBatis SQL mapper framework makes it easier to use a relational database with object-oriented applications.
-MyBatis couples objects with stored procedures or SQL statements using a XML descriptor or annotations.
-Simplicity is the biggest advantage of the MyBatis data mapper over object relational mapping tools.
+- 什么是 Ognl？怎么用？原理是什么？
 
-Essentials
-----------
+- Connection 表示与数据库的连接（会话），这里的会话具体是什么含义？与 web 中用户会话有什么本质区别？
 
-* [See the docs](http://mybatis.github.io/mybatis-3)
-* [Download Latest](https://github.com/mybatis/mybatis-3/releases)
-* [Download Snapshot](https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/mybatis/)
+### 《深入理解mybatis原理》 Mybatis数据源与连接池
+
+> 20210128
+
+- 什么是 jndi?
+
+- 为什么 PooledDataSource 持有 UnpooledDataSource 引用？底层都是 UnpooledDataSource 实现的？
+
+- MyBatis是通过工厂模式来创建数据源DataSource对象===> 动手实现工厂模式，模仿 mybatis 的代码实现
+
+- 复习并实践设计模式之工厂模式[done]
+
+### 20210301
+
+> 使用OGNL从sql参数对象中计算表达式的值，根据表达式的值动态拼接sql，以此来完成动态sql的功能。
+
+- mybatis 怎么使用 OGNL从sql参数对象中计算表达式的值？自己实现OGNL从sql参数对象中计算表达式的值代码。
+
+- 如何编写一个插件？代码实现[done]
+
+- 复习并实践设计模式之责任链模式

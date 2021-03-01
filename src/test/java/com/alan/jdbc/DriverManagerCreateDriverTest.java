@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
+ * 使用 DriverManager 创建 Driver 对象
+ *
  * @author Alan Yin
  * @date 2021/1/26
  */
 
-public class DriverManagerTest {
+public class DriverManagerCreateDriverTest {
 
   public static void main(String[] args) {
 //    driverManagerTest();

@@ -1,4 +1,4 @@
-package javacore.lecture6.jdk;
+package com.alan.mybatis.xmlconfig.test.invocation;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -10,21 +10,21 @@ import java.lang.reflect.Method;
 
 public class MyInvocationHandler implements InvocationHandler {
 
-    private Object target;
+  private Object target;
 
-    public MyInvocationHandler(Object target) {
-        this.target = target;
-    }
+  public MyInvocationHandler(Object target) {
+    this.target = target;
+  }
 
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        String methodName = method.getName();
-        if ("sayHello".equals(methodName)) {
-            System.out.println("change method");
-            return null;
-        }
-        System.out.println("invoke method");
-        Object result = method.invoke(target, args);
-        return result;
+  @Override
+  public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    String methodName = method.getName();
+    if ("sayHello".equals(methodName)) {
+      System.out.println("change method");
+      return null;
     }
+    System.out.println("invoke method");
+    return method.invoke(target, args);
+  }
+
 }

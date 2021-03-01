@@ -22,12 +22,15 @@ import java.util.Properties;
  */
 public interface Interceptor {
 
+  // 用于覆盖被拦截对象的原有方法（在调用代理对象 Plugin 的 invoke()方法时被调用）
   Object intercept(Invocation invocation) throws Throwable;
 
+  // target 是被拦截对象，这个方法的作用是给被拦截对象生成一个代理对象，并返回它
   default Object plugin(Object target) {
     return Plugin.wrap(target, this);
   }
 
+  // 插件初始化时调用，只调用一次，插件配置的属性从这里设置进来:设置参数
   default void setProperties(Properties properties) {
     // NOP
   }

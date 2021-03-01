@@ -17,12 +17,19 @@
     <typeAlias type="com.alan.mybatis.xmlconfig.entity.UserInfo" alias="userInfo"/>
   </typeAliases>
 
+  <!--自定义插件-->
+  <plugins>
+    <plugin interceptor="com.alan.mybatis.xmlconfig.test.plugin.ExamplePlugin"/>
+  </plugins>
+
   <!--必不可少的是 environments 节点内容以及 mappers 节点内容，分别指定连接的数据源以及对应的 mapper。
   其它的比如 typeHandler，typeAliases 等不重要，看自己是否需要用。
   properties 指定属性变量，可以在上下文配置中使用。-->
   <environments default="development">
     <environment id="development">
+      <!--配置事务：JDBC（使用 JDBC 管理事务） 或 MANAGED（使用 web 容器管理事务）-->
       <transactionManager type="JDBC"/>
+      <!--有3种方式:Pooled、Unpooled、Jndi-->
       <dataSource type="POOLED">
         <property name="driver" value="${driver}"/>
         <property name="url" value="${url}"/>
@@ -31,7 +38,9 @@
       </dataSource>
     </environment>
   </environments>
+
   <mappers>
     <mapper resource="resources/mybatis/mapper/UserMapper.xml"/>
   </mappers>
+
 </configuration>

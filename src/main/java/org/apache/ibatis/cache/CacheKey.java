@@ -15,12 +15,12 @@
  */
 package org.apache.ibatis.cache;
 
+import org.apache.ibatis.reflection.ArrayUtil;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
-
-import org.apache.ibatis.reflection.ArrayUtil;
 
 /**
  * @author Clinton Begin
@@ -70,12 +70,17 @@ public class CacheKey implements Cloneable, Serializable {
   }
 
   public void update(Object object) {
+    // 得到对象的hashcode
     int baseHashCode = object == null ? 1 : ArrayUtil.hashCode(object);
 
+    // 对象计数器递增
     count++;
+    // 校验和
     checksum += baseHashCode;
+    // 对象 hashcode 扩大 count 倍
     baseHashCode *= count;
 
+    // 哈希码 = hashCode * 拓展因子（默认37）+ 扩大后的对象hashCode值
     hashcode = multiplier * hashcode + baseHashCode;
 
     updateList.add(object);

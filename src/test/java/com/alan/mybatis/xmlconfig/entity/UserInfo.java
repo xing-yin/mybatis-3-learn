@@ -17,6 +17,20 @@ public class UserInfo {
 
   private String deleteFlag;
 
+  public UserInfo() {
+  }
+
+  public UserInfo(String name, LocalDate birthday, String deleteFlag) {
+    this.name = name;
+    this.birthday = birthday;
+    this.deleteFlag = deleteFlag;
+  }
+
+  public UserInfo(String name, LocalDate birthday) {
+    this.name = name;
+    this.birthday = birthday;
+  }
+
   public Long getId() {
     return id;
   }
@@ -47,5 +61,15 @@ public class UserInfo {
 
   public void setDeleteFlag(String deleteFlag) {
     this.deleteFlag = deleteFlag;
+  }
+
+  @Override
+  public String toString() {
+    return "UserInfo{" +
+      "id=" + id +
+      ", name='" + name + '\'' +
+      ", birthday=" + birthday +
+      ", deleteFlag='" + deleteFlag + '\'' +
+      '}';
   }
 }

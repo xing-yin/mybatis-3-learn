@@ -1,4 +1,4 @@
-package javacore.lecture6.jdk;
+package com.alan.mybatis.xmlconfig.test.invocation;
 
 /**
  * @author Alan Yin

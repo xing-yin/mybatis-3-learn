@@ -1,31 +1,66 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alan.mybatis.xmlconfig.mapper.UserInfoMapper">
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+<!--<mapper namespace="com.alan.mybatis.xmlconfig.mapper.UserInfoMapper">-->
 
-  <!---->
-<!--   <cache><cache/> -->
+<!--  <select id="getSingleUserInfo" resultType="userInfo">-->
+<!--    SELECT *-->
+<!--    FROM user_info-->
+<!--    WHERE id = #{id}-->
+<!--  </select>-->
 
-  <select id="getSingleUserInfo" resultType="userInfo">
-    SELECT * FROM user_info WHERE id = #{id}
-  </select>
+<!--  <select id="getAllUserInfo" resultType="userInfo">-->
+<!--    SELECT *-->
+<!--    FROM user_info-->
+<!--  </select>-->
 
-  <select id="getAllUserInfo" resultType="userInfo">
-    SELECT * FROM user_info
-  </select>
+<!--  <select id="getUserInfoByDate" resultType="userInfo">-->
+<!--    SELECT *-->
+<!--    FROM user_info-->
+<!--    WHERE birthday > #{localDate}-->
+<!--  </select>-->
 
-  <select id="getUserInfoByDate" resultType="userInfo">
-    SELECT * FROM user_info WHERE birthday > #{localDate}
-  </select>
+<!--  <select id="getUserInfoByLessDate" resultType="userInfo">-->
+<!--    SELECT-->
+<!--    *-->
+<!--    FROM user_info-->
+<!--    <where>-->
+<!--      <if test='localDate != null'>-->
+<!--        birthday <![CDATA[<]]> #{localDate}-->
+<!--      </if>-->
+<!--    </where>-->
+<!--  </select>-->
 
-  <select id="getUserInfoByLessDate" resultType="userInfo">
-    SELECT
-      *
-    FROM user_info
-    <where>
-      <if test='localDate != null'>
-        birthday <![CDATA[<]]> #{localDate}
-      </if>
-    </where>
-  </select>
+<!--  &lt;!&ndash;  <insert id="addEmpsBatch">&ndash;&gt;-->
+<!--  &lt;!&ndash;    insert into t(name,age,email)&ndash;&gt;-->
+<!--  &lt;!&ndash;    values&ndash;&gt;-->
+<!--  &lt;!&ndash;    <foreach collection="emps" item="emp" separator=",">&ndash;&gt;-->
+<!--  &lt;!&ndash;      (#{emp.name},#{emp.age},#{emp.email})&ndash;&gt;-->
+<!--  &lt;!&ndash;    </foreach>&ndash;&gt;-->
+<!--  &lt;!&ndash;  </insert>&ndash;&gt;-->
 
-</mapper>
+<!--  <insert id="addUser">-->
+<!--    <selectKey keyColumn="id" resultType="long" keyProperty="userId" order="AFTER">-->
+<!--      SELECT LAST_INSERT_ID() as id-->
+<!--    </selectKey>-->
+<!--    insert into user_info(id,ame,birthday)-->
+<!--    values (#{id},#{name},#{birthday})-->
+<!--  </insert>-->
+
+
+<!--  <select id="getSingleUserInfo" parameterType="int" resultType="com.alan.mybatis.xmlconfig.entity.UserInfo">-->
+<!--    select id, name, delete_falg deleteFlag-->
+<!--    where id = #{id}-->
+<!--  </select>-->
+
+
+<!--  <resultMap id="userResultMap" type="com.alan.mybatis.xmlconfig.entity.UserInfo">-->
+<!--    &lt;!&ndash;用 id 属性来映射主键字段&ndash;&gt;-->
+<!--    <id property="id" column="id"></id>-->
+<!--    &lt;!&ndash;用result属性来映射非主键字段，property为实体类属性名，column为数据库表中的属性&ndash;&gt;-->
+<!--    <result property="deleteFlag" column="delete_flag"/>-->
+<!--    <result property="birthday" column="birthday"/>-->
+<!--  </resultMap>-->
+
+<!--  <parameterMap id="test" type="com.alan.mybatis.xmlconfig.entity.UserInfo"></parameterMap>-->
+
+<!--</mapper>-->

@@ -3,9 +3,9 @@
 <mapper namespace="com.alan.mybatis.xmlconfig.mapper.UserInfoMapper">
 
   <!---->
-  <cache/>
+<!--   <cache><cache/> -->
 
-  <select id="getSingleUserInfo" resultType="userInfo" >
+  <select id="getSingleUserInfo" resultType="userInfo">
     SELECT * FROM user_info WHERE id = #{id}
   </select>
 
@@ -27,5 +27,11 @@
       </if>
     </where>
   </select>
+
+  <insert id="addUser">
+      insert into user_info(name,birthday)
+      values (#{name},#{birthday})
+  </insert>
+
 
 </mapper>
